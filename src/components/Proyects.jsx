@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 
-import Scholas from '../assets/images/scholas.jpg';
+import Scholas from '../assets/images/Scholas.jpg';
 import Paz from '../assets/images/paz.jpg';
 import Diego from '../assets/images/diego.jpg';
 import Futbol from '../assets/images/futbol-zoom.jpg';
