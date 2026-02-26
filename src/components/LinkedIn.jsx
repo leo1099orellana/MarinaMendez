@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 
 // IMPORTANTE: Asegurate de tener estas imágenes en tu carpeta
 import perfilImg from '../assets/images/marina.jpg';
@@ -15,19 +15,21 @@ import linkedin8 from '../assets/images/linkedin-8.jpg';
 export default function LinkedIn() {
     const carruselRef = useRef(null);
 
-    
+    const [postAbierto, setAbierto] = useState(null);
+
+
     useEffect(() => {
         const intervalo = setInterval(() => {
             if (carruselRef.current) {
                 const { scrollLeft, scrollWidth, clientWidth } = carruselRef.current;
-                
+
                 if (scrollLeft + clientWidth >= scrollWidth - 10) {
                     carruselRef.current.scrollTo({ left: 0, behavior: "smooth" });
                 } else {
                     carruselRef.current.scrollBy({ left: 410, behavior: "smooth" }); // 410px por el ancho de estas tarjetas
                 }
             }
-        }, 4000); 
+        }, 4000);
 
         return () => clearInterval(intervalo);
     }, []);
@@ -42,8 +44,8 @@ export default function LinkedIn() {
             link: "https://www.linkedin.com/feed/update/urn:li:activity:6787478614167326720/",
             texto: (
                 <>
-                    Gracias por la oportunidad de seguir logrando un imposible tras otro a pesar de la pandemia, trabajando en silencio, aprendiendo y compartiendo en equipo experiencias profesionales internacionales con los mejores del mundo... 
-                    <br/><br/>
+                    Gracias por la oportunidad de seguir logrando un imposible tras otro a pesar de la pandemia, trabajando en silencio, aprendiendo y compartiendo en equipo experiencias profesionales internacionales con los mejores del mundo...
+                    <br /><br />
                     <span className="font-semibold text-[#0a66c2]">#sports #sportsbiz #soccer #futbol</span>
                 </>
             )
@@ -71,7 +73,7 @@ export default function LinkedIn() {
             texto: (
                 <>
                     Celebrar la vida siempre, en todas partes. Digital Factory Summit Latin América. Gracias México 🇲🇽
-                    <br/><br/>
+                    <br /><br />
                     <span className="font-semibold text-[#0a66c2]">Diageo | Grupo Televisa | Omnicom Media Group</span>
                 </>
             )
@@ -86,7 +88,7 @@ export default function LinkedIn() {
             texto: (
                 <>
                     We work hard, make continuous efforts, and face challenges together. We keep humble, strong, and simple. All we get is love. One team. One dream. More to come soon. Stay tuned, my friends!
-                    <br/><br/>
+                    <br /><br />
                     <span className="font-semibold text-[#0a66c2]">#work #love #celebrate #media #global</span>
                 </>
             )
@@ -114,7 +116,7 @@ export default function LinkedIn() {
             texto: (
                 <>
                     Do you know why I love football/soccer? Football is like life: you need to focus on your position. Each one must add to the team with their talent. Enjoy your passion and celebrate life!
-                    <br/><br/>
+                    <br /><br />
                     <span className="font-semibold text-[#0a66c2]">#football #talent #team #soccer</span>
                 </>
             )
@@ -146,12 +148,15 @@ export default function LinkedIn() {
             )
         }
     ];
+    const obtenerLinkEmbed = (url) => {
+        return url.replace('/feed/', '/embed/feed/');
+    }
 
     return (
         <section id="linkedin" className="relative bg-neutral-50 px-4 md:px-6 py-12 md:py-24 overflow-visible font-sans">
             <div className="z-10 relative mx-auto max-w-7xl">
-                
-                
+
+
                 <div className="flex md:flex-row flex-col justify-between items-center md:items-end gap-6 mb-10 md:mb-16 md:text-left text-center">
                     <div className="w-full md:w-auto">
                         <div className="flex justify-center md:justify-start items-center gap-2 mb-4">
@@ -168,7 +173,7 @@ export default function LinkedIn() {
                             Mis últimas publicaciones
                         </h2>
                     </div>
-                    
+
                     <a href="https://www.linkedin.com/in/marinamendez/" target="_blank" rel="noopener noreferrer" className="group flex justify-center items-center gap-2 bg-white hover:bg-neutral-50 px-5 py-2.5 border border-[#0a66c2] rounded-full w-full md:w-auto font-semibold text-[#0a66c2] transition-all">
                         <span>Ver todo en LinkedIn</span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-up-right w-4 h-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" aria-hidden="true">
@@ -178,17 +183,17 @@ export default function LinkedIn() {
                     </a>
                 </div>
 
-             
-                <div 
+
+                <div
                     ref={carruselRef}
                     className="flex overflow-x-auto gap-6 pb-12 snap-x snap-mandatory hide-scrollbar scroll-smooth"
                 >
                     {publicaciones.map((post) => (
                         <div key={post.id} className="min-w-[320px] md:min-w-[410px] snap-center h-auto">
-                            
+
                             <div className="relative flex flex-col bg-white hover:shadow-[0_4px_12px_rgba(0,0,0,0.08)] border border-neutral-200/60 rounded-xl h-full overflow-hidden text-left transition-shadow duration-300">
-                                
-                                
+
+
                                 <div className="flex gap-3 p-4 pb-2">
                                     <img alt="Marina Paula Méndez" className="border border-neutral-100 rounded-full w-12 h-12 object-cover" src={perfilImg} />
                                     <div className="flex-1 min-w-0">
@@ -219,25 +224,27 @@ export default function LinkedIn() {
                                     </div>
                                 </div>
 
-                              
-                                <div className="px-4 py-2">
+
+                                <div className="px-4 py-2 flex-1 flex flex-col items-start">
                                     <div className="mb-1 text-[14px] text-neutral-900 break-words line-clamp-3 leading-normal">
                                         {post.texto}
                                     </div>
-                                    <a href={post.link} target="_blank" rel="noopener noreferrer" className="focus:outline-none font-semibold text-[14px] text-neutral-500 hover:text-[#0a66c2] hover:underline transition-colors">
+                                    <button onClick={() => setAbierto(post.link)} className="mt-auto focus:outline-none font-seminold text-[14px] text-neutral-500 hover:text-[#0a66c2] hover:underline transition-colors">
                                         ...ver más
-                                    </a>
+                                    </button>
                                 </div>
 
-                                
+
                                 <div className="mt-2">
-                                    <a href={post.link} target="_blank" rel="noopener noreferrer" className="block bg-neutral-100 focus:outline-none w-full aspect-[1.91/1] overflow-hidden">
+                                    <button onClick={() => setAbierto(post.link)} className="block bg-neutral-100 focus:outline-none w-full aspect-[1.91/1] overflow-hidden">
                                         <img alt="Post media" className="hover:opacity-95 w-full h-full object-cover transition-opacity bg-neutral-200" src={post.imagen} />
-                                    </a>
+
+
+                                    </button>
                                 </div>
 
-                                
-                                <div className="flex justify-between items-center mt-auto px-4 py-2 border-neutral-100 border-b text-[12px] text-neutral-500">
+
+                                <div className="flex justify-between items-center px-4 py-2 border-neutral-100 border-b text-[12px] text-neutral-500">
                                     <div className="flex items-center gap-1">
                                         <img alt="Like" className="w-4 h-4" src="https://static.licdn.com/aero-v1/sc/h/8ekq8gho1ruaf8i7f86vd1ftt" />
                                         <img alt="Love" className="-ml-1 w-4 h-4" src="https://static.licdn.com/aero-v1/sc/h/b1dl5jk88euc7e9ri50xy5qo8" />
@@ -250,7 +257,7 @@ export default function LinkedIn() {
                                     </div>
                                 </div>
 
-                                
+
                                 <div className="flex justify-between px-1 py-1">
                                     <a href={post.link} target="_blank" rel="noopener noreferrer" className="flex flex-1 justify-center items-center gap-1.5 hover:bg-neutral-100 py-3 rounded-md font-semibold text-[14px] text-neutral-600 transition-colors">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-thumbs-up w-5 h-5" aria-hidden="true"><path d="M7 10v12" /><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z" /></svg>
@@ -265,12 +272,43 @@ export default function LinkedIn() {
                                         <span className="hidden sm:block">Compartir</span>
                                     </a>
                                 </div>
-                                
+
                             </div>
                         </div>
                     ))}
                 </div>
             </div>
+            {/* VENTANA EMERGENTE */}
+            {postAbierto && (
+                <div
+                    className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm"
+                    onClick={() => setAbierto(null)}
+                >
+                    <div
+                        className="relative w-full max-w-2xl bg-white rounded-xl shadow-2xl overflow-hidden h-[85vh]"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        {/* Botón para cerrar */}
+                        <button
+                            onClick={() => setAbierto(null)}
+                            className="absolute top-3 right-4 z-50 bg-neutral-800 hover:bg-black text-white rounded-full w-8 h-8 flex items-center justify-center font-bold transition-colors cursor-pointer"                        >
+                            ✕
+                        </button>
+
+                        <div className="w-full h-full bg-neutral-100 pt-12 pb-2 px-2">
+                            <iframe
+                                src={obtenerLinkEmbed(postAbierto)}
+                                height="100%"
+                                width="100%"
+                                frameBorder="0"
+                                allowFullScreen=""
+                                title="Publicacion de Linkedin"
+                                className="w-full h-full rounded-lg"
+                            ></iframe>
+                        </div>
+                    </div>
+                </div>
+            )}
         </section>
     );
 }

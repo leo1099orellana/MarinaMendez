@@ -38,7 +38,7 @@ export default function Press() {
             id: 2,
             titulo: "Primera conferencia “Cultura Huracán” con CONMEBOL",
             descripcion: "Oradora junto a Presidente Conmebol en capacitación para prensa.",
-            etiqueta: Huracan,
+            etiqueta:  "HURACÁN/CONMEBOL",
             fecha: "20 Nov 2020",
             imagen: Huracan, 
             link: "https://cahuracan.com/noticias/primera-conferencia-cultura-huracan-con-conmebol"
@@ -47,7 +47,7 @@ export default function Press() {
             id: 3,
             titulo: "Acuerdo de colaboración con la AFA",
             descripcion: "Convenio centrado en cultura de paz, capacitación y difusión deportiva.",
-            etiqueta: Chiqui,
+            etiqueta: "AFA",
             fecha: "29 Ago 2017",
             imagen: Chiqui, 
             link: "https://www.afa.com.ar/6397/posts/acuerdo-de-colaboracion"
